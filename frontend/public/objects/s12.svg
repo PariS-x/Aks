@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Specimen"><defs>
+  <pattern id="ht" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="7" height="7" fill="#bdbdbd"/><circle cx="3.5" cy="3.5" r="1.9" fill="#111"/>
+  </pattern>
+  <pattern id="htd" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="6" height="6" fill="#2a2a2a"/><circle cx="3" cy="3" r="1.3" fill="#8a8a8a"/>
+  </pattern>
+  <pattern id="htl" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="7" height="7" fill="#efefef"/><circle cx="3.5" cy="3.5" r="1.1" fill="#555"/>
+  </pattern>
+  <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+    <rect width="8" height="8" fill="#9a9a9a"/><rect width="3" height="8" fill="#3a3a3a"/>
+  </pattern>
+  <linearGradient id="metal" x1="0" x2="1">
+    <stop offset="0" stop-color="#5a5a5a"/><stop offset=".35" stop-color="#f4f4f4"/><stop offset=".55" stop-color="#9c9c9c"/><stop offset="1" stop-color="#3c3c3c"/>
+  </linearGradient>
+  <linearGradient id="metalv" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#5a5a5a"/><stop offset=".35" stop-color="#f4f4f4"/><stop offset=".6" stop-color="#9c9c9c"/><stop offset="1" stop-color="#3c3c3c"/>
+  </linearGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#e8e8e8"/><stop offset="1" stop-color="#777"/></radialGradient>
+</defs><g transform="rotate(12 200 200)">
+<rect x="130" y="20" width="140" height="360" rx="34" fill="#1d1d1d" stroke="#000" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M146 46 Q 150 32 170 30" stroke="#777" stroke-width="5" fill="none"/>
+<circle cx="236" cy="56" r="12" fill="url(#glow)" stroke="#000" stroke-width="3"/>
+<circle cx="200" cy="134" r="44" fill="url(#ht)" stroke="#000" stroke-width="3"/>
+<circle cx="200" cy="134" r="17" fill="#e6e6e6" stroke="#000" stroke-width="3"/>
+<rect x="150" y="210" width="26" height="18" rx="6" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/><rect x="186" y="210" width="26" height="18" rx="6" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/><rect x="222" y="210" width="26" height="18" rx="6" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/><rect x="150" y="240" width="26" height="18" rx="6" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/><rect x="186" y="240" width="26" height="18" rx="6" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/><rect x="222" y="240" width="26" height="18" rx="6" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/><rect x="150" y="270" width="26" height="18" rx="6" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/><rect x="186" y="270" width="26" height="18" rx="6" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/><rect x="222" y="270" width="26" height="18" rx="6" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/>
+<rect x="170" y="318" width="60" height="22" rx="10" fill="#d6d6d6" stroke="#000" stroke-width="2.5"/>
+</g></svg>

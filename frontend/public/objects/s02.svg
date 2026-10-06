@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Specimen"><defs>
+  <pattern id="ht" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="7" height="7" fill="#bdbdbd"/><circle cx="3.5" cy="3.5" r="1.9" fill="#111"/>
+  </pattern>
+  <pattern id="htd" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="6" height="6" fill="#2a2a2a"/><circle cx="3" cy="3" r="1.3" fill="#8a8a8a"/>
+  </pattern>
+  <pattern id="htl" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="7" height="7" fill="#efefef"/><circle cx="3.5" cy="3.5" r="1.1" fill="#555"/>
+  </pattern>
+  <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+    <rect width="8" height="8" fill="#9a9a9a"/><rect width="3" height="8" fill="#3a3a3a"/>
+  </pattern>
+  <linearGradient id="metal" x1="0" x2="1">
+    <stop offset="0" stop-color="#5a5a5a"/><stop offset=".35" stop-color="#f4f4f4"/><stop offset=".55" stop-color="#9c9c9c"/><stop offset="1" stop-color="#3c3c3c"/>
+  </linearGradient>
+  <linearGradient id="metalv" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#5a5a5a"/><stop offset=".35" stop-color="#f4f4f4"/><stop offset=".6" stop-color="#9c9c9c"/><stop offset="1" stop-color="#3c3c3c"/>
+  </linearGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#e8e8e8"/><stop offset="1" stop-color="#777"/></radialGradient>
+</defs><path d="M50 190 Q 200 20 350 190 Q 325 172 300 190 Q 275 172 250 190 Q 225 172 200 190 Q 175 172 150 190 Q 125 172 100 190 Q 75 172 50 190 Z" fill="url(#htd)" stroke="#000" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M200 60 Q 160 120 150 190 M200 60 Q 240 120 250 190 M200 60 Q 110 110 100 190 M200 60 Q 290 110 300 190" stroke="#000" stroke-width="3" fill="none"/>
+<path d="M120 120 Q 160 80 200 64" stroke="#d8d8d8" stroke-width="5" fill="none" opacity=".7"/>
+<line x1="200" y1="38" x2="200" y2="60" stroke="#000" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M200 190 L200 330 Q 200 362 228 362 Q 254 362 254 336" fill="none" stroke="#000" stroke-width="12" stroke-linecap="round"/>
+<path d="M200 190 L200 330 Q 200 362 228 362 Q 254 362 254 336" fill="none" stroke="#7a7a7a" stroke-width="6" stroke-linecap="round"/></svg>
