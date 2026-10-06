@@ -10,6 +10,7 @@ Set one of:
 
 from __future__ import annotations
 
+import asyncio
 import base64
 import os
 from typing import Optional, Protocol
@@ -19,6 +20,11 @@ import httpx
 
 class LLMError(Exception):
     pass
+
+
+# Free Gemini models tried in order when the chosen one is busy (503) or rate-limited (429)
+GEMINI_FALLBACKS = ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]
+RETRYABLE = {429, 500, 502, 503, 504}
 
 
 class LLMClient(Protocol):
@@ -72,9 +78,11 @@ class AnthropicClient:
 
 class OpenAIClient:
 
-    def __init__(self, api_key: str, model: str, base_url: str, timeout: float = 25.0, name: str = "openai"):
+    def __init__(self, api_key: str, model: str, base_url: str, timeout: float = 25.0, name: str = "openai",
+                 fallback_models: list[str] | None = None):
         self.api_key, self.model, self.base_url, self.timeout = api_key, model, base_url.rstrip("/"), timeout
         self.name = name
+        self.fallback_models = [m for m in (fallback_models or []) if m != model]
 
     async def complete(self, system: str, user: str, max_tokens: int = 800) -> str:
         r = await self._post({
@@ -89,12 +97,22 @@ class OpenAIClient:
         return r.json()["choices"][0]["message"]["content"] or ""
 
     async def _post(self, body: dict) -> httpx.Response:
+        """POST with retries. Busy/rate-limited models get a short backoff, then the next fallback model."""
+        url = f"{self.base_url}/chat/completions"
+        headers = {"authorization": f"Bearer {self.api_key}"}
+        r = None
         async with httpx.AsyncClient(timeout=60) as http:
-            r = await http.post(f"{self.base_url}/chat/completions", headers={"authorization": f"Bearer {self.api_key}"}, json=body)
-            # Some OpenAI-compatible servers reject response_format; retry once without it
-            if r.status_code == 400 and "response_format" in r.text and "response_format" in body:
-                body = {k: v for k, v in body.items() if k != "response_format"}
-                r = await http.post(f"{self.base_url}/chat/completions", headers={"authorization": f"Bearer {self.api_key}"}, json=body)
+            for model in [self.model, *self.fallback_models]:
+                body = {**body, "model": model}
+                for attempt in range(2):
+                    r = await http.post(url, headers=headers, json=body)
+                    # Some OpenAI-compatible servers reject response_format; retry once without it
+                    if r.status_code == 400 and "response_format" in r.text and "response_format" in body:
+                        body = {k: v for k, v in body.items() if k != "response_format"}
+                        r = await http.post(url, headers=headers, json=body)
+                    if r.status_code not in RETRYABLE:
+                        return r
+                    await asyncio.sleep(1.5 * (attempt + 1))
         return r
 
     async def complete_with_images(self, system: str, user: str, image_urls: list[str], max_tokens: int = 600) -> str:
@@ -140,7 +158,8 @@ def get_client() -> Optional[LLMClient]:
         if not key:
             return None
         return OpenAIClient(key, model or "gemini-3.8-flash",
-                            "https://generativelanguage.googleapis.com/v1beta/openai/", name="gemini")
+                            "https://generativelanguage.googleapis.com/v1beta/openai/", name="gemini",
+                            fallback_models=GEMINI_FALLBACKS)
     if provider == "ollama":  # fully local and free, no key
         return OpenAIClient("ollama", model or "qwen2.5vl:3b",
                             os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1"), timeout=120, name="ollama")
